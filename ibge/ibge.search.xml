@@ -16,7 +16,7 @@
                 <![CDATA[ 
                     var url = "http://ibge.gov.br/cidadesat/xtras/pesqmun.php?pesqmun="+query;
                     var filter = '//ul[@id="lista"] /li/a[@href]';
-                    var querystring = "SELECT * FROM html WHERE url = '"+url+"' AND xpath='"+filter+"' AND charset='latin1'";
+                    var querystring = "SELECT * FROM html WHERE url = '"+url+"' AND charset='latin1'";
                     q = y.query(querystring);
                     var data = <results />
                     for each (r in q.results..a) { 
