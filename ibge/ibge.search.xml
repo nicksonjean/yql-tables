@@ -20,10 +20,9 @@
                     var data = <results />
                     for each (r in q.results..a) {
                         var raw_item = r.@href.text().toString()
-                        var raw_content = r.content().toString()
 
-                        var title = unescape(raw_content.split(' - ')[0])
-                        var sigla = unescape(raw_content.split(' - ')[1])
+                        var title = unescape(r.split(' - ')[0])
+                        var sigla = unescape(r.split(' - ')[1])
                         var estado = unescape(raw_item.split('?')[1].split('&')[2].split('=')[1].split('|')[0].replace(/-/g, " ")).toUpperCase()
                         var cidade = unescape(raw_item.split('?')[1].split('&')[2].split('=')[1].split('|')[1].replace(/-/g, " ")).toUpperCase()
                         var codigo = raw_item.split('?')[1].split('&')[1].split('=')[1]
