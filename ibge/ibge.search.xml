@@ -26,7 +26,7 @@
                         var estado = unescape(raw_item.split('?')[1].split('&')[2].split('=')[1].split('|')[0].replace(/-/g, " ")).toUpperCase()
                         var cidade = unescape(raw_item.split('?')[1].split('&')[2].split('=')[1].split('|')[1].replace(/-/g, " ")).toUpperCase()
                         var codigo = raw_item.split('?')[1].split('&')[1].split('=')[1]
-                        data.results += <city ibge_code="{ codigo }" name="{ title }">
+                        data.results += <city ibge_code={ codigo } name={ title }>
                                             <ibge_code>{ codigo }</ibge_code>
                                             <name>{ cidade }</name>
                                             <state>
