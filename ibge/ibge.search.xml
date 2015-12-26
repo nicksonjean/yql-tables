@@ -20,8 +20,10 @@
                     var data = <results />
                     for each (r in q.results..a) { 
                         var raw_item = r.@href.text().toString()
-                        var items = raw_item.substring( raw_item.indexOf("(")+1, raw_item.indexOf(")") ).replace(/'/g, "").split(",")
-                        data.results += <city><name>{ unescape(items[0]) }</name><ibge_code>{items[1]}</ibge_code><state>{items[2]}</state></city>
+                        var estado = unescape(result.split('?')[1].split('&')[2].split('=')[1].split('|')[0].replace(/-/g, " ")).toUpperCase()
+                        var cidade = unescape(result.split('?')[1].split('&')[2].split('=')[1].split('|')[1].replace(/-/g, " ")).toUpperCase()
+                        var codigo = result.split('?')[1].split('&')[1].split('=')[1]
+                        data.results += <city><name>{ cidade }</name><ibge_code>{ codigo }</ibge_code><state>{ estado }</state></city>
                     }
                     response.object = data;
                 ]]>
