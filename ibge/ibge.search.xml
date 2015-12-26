@@ -16,7 +16,7 @@
 		<execute>
 			<![CDATA[ 
 			
-		var url = "http://ibge.gov.br/cidadesat/xtras/pesqmun.php?pesqmun="+query;
+		var url = "http://ibge.gov.br/cidadesat/xtras/pesqmun.php?nomemun="+query;
     	var querystring = "select * from html where url = '"+url+"' and xpath=\"//a/@href\" and charset='latin1'"; 
     	q = y.query(querystring);
 		
