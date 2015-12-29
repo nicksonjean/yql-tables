@@ -1,7 +1,7 @@
 /** version 0.1 2015-12-29
  * @author      Nickson Jeanmerson
  * @license     Mit Style License
- * @project     http://code.google.com/p/css2xpath/
+ * @project     https://github.com/nicksonjean/yql-tables/tree/master/utils/scripts/remove_diacritics
  */
 
 /** remove_diacritics - Remove diacritics of the string sequence
