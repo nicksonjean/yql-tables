@@ -14,6 +14,14 @@
             <inputs>
                 <key id="query" as="location" type="xs:string" required="true" paramType="query"/>
             </inputs>
+            <execute>
+                <![CDATA[
+                    y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/remove_diacritics/remove_diacritics.min.js");
+                    var param = remove_diacritics(decodeURIComponent(query)).replace(/ /g, "+");
+                    var data = <location />
+                    response.object = data;
+                ]]>
+            </execute>
         </select>
     </bindings>
 </table>
