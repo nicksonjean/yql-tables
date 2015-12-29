@@ -9,7 +9,7 @@
     <bindings>
         <select itemPath="results.city" produces="XML">
             <inputs>
-                <key id="query" as="city" type="xs:string" paramType="query" />
+                <key id="city" type="xs:string" paramType="query" />
             </inputs>
             <execute>
                 <![CDATA[
