@@ -5,12 +5,11 @@
         <description></description>
         <documentationURL></documentationURL>
         <sampleQuery>SELECT * FROM {table} WHERE query="MOSSORO"</sampleQuery>
-        <sampleQuery>SELECT * FROM {table} WHERE query="MOSSORO" AND state="RN"</sampleQuery>
     </meta>
     <bindings>
         <select itemPath="results.city" produces="XML">
             <inputs>
-                <key id="query" type="xs:string" paramType="query" />
+                <key id="query" as="city" type="xs:string" paramType="query" />
             </inputs>
             <execute>
                 <![CDATA[
