@@ -9,7 +9,7 @@
     <bindings>
         <select itemPath="" produces="XML">
             <urls>
-                <url>http://api.wunderground.com/auto/wui/geo/GeoLookupXML/index.xml?query={location}</url>
+                <url>http://api.wunderground.com/auto/wui/geo/GeoLookupXML/index.xml</url>
             </urls>
             <inputs>
                 <key id="query" as="location" type="xs:string" required="true" paramType="query"/>
