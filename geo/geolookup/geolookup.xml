@@ -12,7 +12,7 @@
                 <url>http://api.wunderground.com/auto/wui/geo/GeoLookupXML/index.xml</url>
             </urls>
             <inputs>
-                <key id="query" as="location" type="xs:string" required="true" paramType="query"/>
+                <key id="location" type="xs:string" required="true" paramType="query"/>
             </inputs>
             <execute>
                 <![CDATA[
@@ -20,7 +20,7 @@
                     location = remove_diacritics(decodeURIComponent(location)).replace(/ /g, "+");
                     y.log(request.url);
                     y.log(location);
-                    response.object = request.get().response;
+                    response.object = y.rest(request.url).query("location",location).get().response;
                 ]]>
             </execute>
         </select>
