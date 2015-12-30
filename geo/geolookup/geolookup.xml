@@ -18,7 +18,7 @@
                 <![CDATA[
                     y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/remove_diacritics/remove_diacritics.min.js");
                     location = remove_diacritics(decodeURIComponent(location)).replace(/ /g, "+");
-                    y.log(request);
+                    y.log(query);
                     response.object = request.get().response;
                 ]]>
             </execute>
