@@ -20,6 +20,7 @@
                     location = remove_diacritics(decodeURIComponent(location)).replace(/ /g, "+");
                     y.log(request.url);
                     y.log(location);
+                    y.log(request.get());
                     response.object = request.get().response;
                 ]]>
             </execute>
