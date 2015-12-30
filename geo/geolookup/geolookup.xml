@@ -8,9 +8,6 @@
     </meta>
     <bindings>
         <select itemPath="" produces="XML">
-            <urls>
-                <url>http://api.wunderground.com/auto/wui/geo/GeoLookupXML/index.xml</url>
-            </urls>
             <inputs>
                 <key id="location" type="xs:string" required="true" paramType="query"/>
             </inputs>
@@ -18,9 +15,7 @@
                 <![CDATA[
                     y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/remove_diacritics/remove_diacritics.min.js");
                     location = remove_diacritics(decodeURIComponent(location)).replace(/ /g, "+");
-                    y.log(request.url);
-                    y.log(location);
-                    response.object = y.rest(request.url).query("location",location).get().response;
+                    response.object = y.rest('http://api.wunderground.com/auto/wui/geo/GeoLookupXML/index.xml').query("location",location).get().response;
                 ]]>
             </execute>
         </select>
