@@ -14,7 +14,7 @@
             <execute>
                 <![CDATA[
                     y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/remove_diacritics/remove_diacritics.min.js");
-                    var param = remove_diacritics(decodeURIComponent(location.replace(/ /g, "+")));
+                    var param = remove_diacritics(decodeURIComponent(location.replace(/ /g, "%20")));
                     response.object = y.rest('http://api.wunderground.com/auto/wui/geo/GeoLookupXML/index.xml').query("query",param).get().response;
                 ]]>
             </execute>

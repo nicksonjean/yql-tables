@@ -14,7 +14,7 @@
             <execute>
                 <![CDATA[
                     y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/remove_diacritics/remove_diacritics.min.js");
-                    var param = remove_diacritics(decodeURIComponent(city.replace(/ /g, "+")));
+                    var param = remove_diacritics(decodeURIComponent(city)).replace(/ /g, "+");
                     var url = "http://ibge.gov.br/cidadesat/xtras/pesqmun.php?pesqmun="+param;
                     var xpath = '//ul[@id="lista"] /li/a[@href]';
                     var q = y.query("SELECT * FROM html WHERE url=@url AND xpath=@xpath AND charset=@charset", {url:url,xpath:xpath,charset:"latin1"});
