@@ -9,12 +9,12 @@
     <bindings>
         <select itemPath="" produces="XML">
             <inputs>
-                <key id="location" type="xs:string" required="true" paramType="query"/>
+                <key id="query" type="xs:string" required="true" paramType="query"/>
             </inputs>
             <execute>
                 <![CDATA[
                     y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/remove_diacritics/remove_diacritics.min.js");
-                    location = remove_diacritics(decodeURIComponent(location)).replace(/ /g, "+");
+                    location = remove_diacritics(decodeURIComponent(query)).replace(/ /g, "+");
                     response.object = y.rest('http://api.wunderground.com/auto/wui/geo/GeoLookupXML/index.xml').query("location",location).get().response;
                 ]]>
             </execute>
