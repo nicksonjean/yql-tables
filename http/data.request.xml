@@ -20,6 +20,7 @@
             </inputs>
             <execute>
                 <![CDATA[
+                    y.log(header);
                     if(header) {
                         var headers = header.split(',');
                         var headerString = '';
