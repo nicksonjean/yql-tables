@@ -36,7 +36,7 @@
                         if(headers) {
                             var _headers = headers.split(',');
                             for (i = 0; i < _headers.length; i++) {
-                                if(_headers[i].trim().split(':')[1].toLowerCase() == 'accept) {
+                                if(_headers[i].trim().split(':')[1].toLowerCase() == 'accept') {
                                     _data += _request.accept("'" + _headers[i].trim().split(':')[1].toLowerCase() + "'");
                                 }
                                 else {
