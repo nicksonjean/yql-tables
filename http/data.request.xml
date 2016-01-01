@@ -3,7 +3,8 @@
     <meta>
         <author>Nickson Jeanmerson</author>
         <description>Envia (Post) e Recebe (Get) Dados de Sites e Web Service</description>
-        <sampleQuery></sampleQuery>
+        <sampleQuery>SELECT * FROM {table} WHERE url='url' AND format='json'</sampleQuery>
+        <sampleQuery>SELECT * FROM {table} WHERE url='url' AND data="foo=foo&bar=bar" AND xpath="//p"</sampleQuery>
         <documentationURL></documentationURL>
     </meta>
     <bindings>
