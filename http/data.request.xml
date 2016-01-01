@@ -20,7 +20,6 @@
             </inputs>
             <execute>
                 <![CDATA[
-                    y.log(header);
                     if(header) {
                         var headers = header.split(',');
                         var headerString = '';
@@ -28,6 +27,9 @@
                             headerString += "'" + headers[i].trim().split(':')[0] + "'" + ',' + "'" + headers[i].trim().split(':')[1] + "'" + ',';
                         }
                     }
+
+                    y.log("header: " + header);
+                    y.log("headerString " + headerString);
 
                     var _request = y.rest(url);
                     if(type == 'post') {
