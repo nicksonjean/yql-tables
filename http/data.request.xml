@@ -16,12 +16,12 @@
                 <key id="type" type="xs:string" required="false" default="get" paramType="variable"/>
                 <key id="requestdata" type="xs:string" required="false" paramType="variable"/>
                 <key id="xpath" type="xs:string" required="false" paramType="variable"/>
-                <key id="headers" type="xs:string" required="false" paramType="variable"/>
+                <key id="format" type="xs:string" required="false" paramType="variable"/>
             </inputs>
             <execute>
                 <![CDATA[
                     var _request = y.rest(url);
-                    var _data = _request;
+                    var _data = null;
                     if(type == 'post') {
                         _data = _request.accept('text/html').contentType("application/x-www-form-urlencoded").post(requestdata).response;
                         if(xpath) {
@@ -33,22 +33,13 @@
                         }
                     }
                     else {
-                        if(headers) {
-                            var _headers = headers.split(',');
-                            for (i = 0; i < _headers.length; i++) {
-                                if(_headers[i].trim().split(':')[1].toLowerCase() == 'accept') {
-                                    _data = y.accept("'" + _headers[i].trim().split(':')[1].toLowerCase() + "'");
-                                }
-                                else {
-                                    _data = y.header("'" + _headers[i].trim().split(':')[0] + "'" + ',' + "'" + _headers[i].trim().split(':')[1] + "'");
-                                }
-                            }
-                            _data = _request.get(requestdata).response;
+                        if(format == 'json') {
+                            _data = _request.accept('application/json');
                         }
                         else {
-                            _data = _request.accept('application/json').get(requestdata).response;
+                            _data = _request.accept('text/xml');
                         }
-
+                        _data = _request.get(requestdata).response;
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
                             response.object = <getresult>{xdata}</getresult>;
