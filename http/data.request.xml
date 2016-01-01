@@ -16,24 +16,24 @@
                 <key id="type" type="xs:string" required="false" default="get" paramType="variable"/>
                 <key id="requestdata" type="xs:string" required="false" paramType="variable"/>
                 <key id="xpath" type="xs:string" required="false" paramType="variable"/>
-                <key id="header" type="xs:string" required="false" paramType="variable"/>
+                <key id="headers" type="xs:string" required="false" paramType="variable"/>
             </inputs>
             <execute>
                 <![CDATA[
-                    if(header) {
-                        var headers = header.split(',');
+                    if(headers) {
+                        var _headers = headers.split(',');
                         var headerString = '';
-                        for (i = 0; i < headers.length; i++) {
-                            headerString += "'" + headers[i].trim().split(':')[0] + "'" + ',' + "'" + headers[i].trim().split(':')[1] + "'" + ',';
+                        for (i = 0; i < _headers.length; i++) {
+                            headerString += "'" + _headers[i].trim().split(':')[0] + "'" + ',' + "'" + _headers[i].trim().split(':')[1] + "'" + ',';
                         }
                     }
 
-                    y.log("header: " + header);
+                    y.log("header: " + headers);
                     y.log("headerString " + headerString);
 
                     var _request = y.rest(url);
                     if(type == 'post') {
-                        if(header) {
+                        if(headers) {
                             var _data = _request.header(headerString.substring(0,headerString.length - 1)).contentType("application/x-www-form-urlencoded").post(requestdata).response;
                         }
                         else {
@@ -48,7 +48,7 @@
                         }
                     }
                     else {
-                        if(header) {
+                        if(headers) {
                             var _data = _request.header(headerString.substring(0,headerString.length - 1)).get(requestdata).response;
                         }
                         else {
