@@ -3,7 +3,7 @@
     <meta>
         <author>Nickson Jeanmerson</author>
         <description>Envia (Post) e Recebe (Get) Dados de Sites e Web Service</description>
-        <sampleQuery>SELECT * FROM {table} WHERE url='url' AND data="foo=foo&bar=bar" AND type="post" AND xpath="//p"</sampleQuery>
+        <sampleQuery>SELECT * FROM {table} WHERE url='url' AND type="post" AND requestdata="foo=foo&bar=bar" AND xpath="//p"</sampleQuery>
         <documentationURL></documentationURL>
     </meta>
     <bindings>
@@ -13,8 +13,8 @@
             </urls>
             <inputs>
                 <key id="url" type="xs:string" required="true" paramType="variable"/>
-                <key id="data" type="xs:string" required="false" paramType="variable"/>
                 <key id="type" type="xs:string" required="false" default="get" paramType="variable"/>
+                <key id="requestdata" type="xs:string" required="false" paramType="variable"/>
                 <key id="xpath" type="xs:string" required="false" paramType="variable"/>
                 <key id="header" type="xs:string" required="false" paramType="variable"/>
             </inputs>
@@ -29,10 +29,10 @@
                     var _request = y.rest(url);
                     if(type == 'post') {
                         if(header) {
-                            var _data = _request.header(headerString.substring(0,headerString.length - 1)).contentType("application/x-www-form-urlencoded").post(data).response;
+                            var _data = _request.header(headerString.substring(0,headerString.length - 1)).contentType("application/x-www-form-urlencoded").post(requestdata).response;
                         }
                         else {
-                            var _data = _request.accept('text/html').contentType("application/x-www-form-urlencoded").post(data).response;
+                            var _data = _request.accept('text/html').contentType("application/x-www-form-urlencoded").post(requestdata).response;
                         }
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
@@ -44,10 +44,10 @@
                     }
                     else {
                         if(header) {
-                            var _data = _request.header(headerString.substring(0,headerString.length - 1));
+                            var _data = _request.header(headerString.substring(0,headerString.length - 1)).get(requestdata).response;
                         }
                         else {
-                            var _data = _request.get(data).response;
+                            var _data = _request.get(requestdata).response;
                         }
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
