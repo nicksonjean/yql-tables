@@ -14,7 +14,7 @@
             <inputs>
                 <key id="url" type="xs:string" required="true" paramType="variable"/>
                 <key id="type" type="xs:string" required="false" default="get" paramType="variable"/>
-                <key id="requestdata" type="xs:string" required="false" paramType="variable"/>
+                <key id="data" type="xs:string" required="false" paramType="variable"/>
                 <key id="xpath" type="xs:string" required="false" paramType="variable"/>
                 <key id="format" type="xs:string" required="false" paramType="variable"/>
             </inputs>
@@ -22,8 +22,8 @@
                 <![CDATA[
                     var _request = y.rest(url);
                     var _data = null;
-                    if(type == 'post') {
-                        _data = _request.accept('text/html').contentType("application/x-www-form-urlencoded").post(requestdata).response;
+                    if(data || type == 'post') {
+                        _data = _request.accept('text/html').contentType("application/x-www-form-urlencoded").post(data).response;
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
                             response.object = <postresult>{xdata}</postresult>;
