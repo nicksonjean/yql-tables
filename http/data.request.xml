@@ -20,25 +20,23 @@
             </inputs>
             <execute>
                 <![CDATA[
-                    if(headers) {
-                        var _headers = headers.split(',');
-                        var headerString = '';
-                        for (i = 0; i < _headers.length; i++) {
-                            headerString += "'" + _headers[i].trim().split(':')[0] + "'" + ',' + "'" + _headers[i].trim().split(':')[1] + "'" + ',';
-                        }
-                    }
-
-                    y.log("header: " + headers);
-                    y.log("headerString " + headerString);
-
                     var _request = y.rest(url);
+                    var _data = _request;
                     if(type == 'post') {
                         if(headers) {
-                            var _data = _request.header(headerString.substring(0,headerString.length - 1)).contentType("application/x-www-form-urlencoded").post(requestdata).response;
+                            var _headers = headers.split(',');
+                            for (i = 0; i < _headers.length; i++) {
+                                _data += _data.header("'" + _headers[i].trim().split(':')[0] + "'" + ',' + "'" + _headers[i].trim().split(':')[1] + "'");
+                            }
+                            _data = _data.contentType("application/x-www-form-urlencoded").post(requestdata).response;
                         }
                         else {
-                            var _data = _request.accept('text/html').contentType("application/x-www-form-urlencoded").post(requestdata).response;
+                            _data = _request.accept('text/html').contentType("application/x-www-form-urlencoded").post(requestdata).response;
                         }
+
+                        y.log("header: " + headers);
+                        y.log("headerString " + headerString);
+
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
                             response.object = <postresult>{xdata}</postresult>;
@@ -49,11 +47,19 @@
                     }
                     else {
                         if(headers) {
-                            var _data = _request.header(headerString.substring(0,headerString.length - 1)).get(requestdata).response;
+                            var _headers = headers.split(',');
+                            for (i = 0; i < _headers.length; i++) {
+                                _data += _data.header("'" + _headers[i].trim().split(':')[0] + "'" + ',' + "'" + _headers[i].trim().split(':')[1] + "'");
+                            }
+                            _data = _request.get(requestdata).response;
                         }
                         else {
-                            var _data = _request.get(requestdata).response;
+                            _data = _request.get(requestdata).response;
                         }
+
+                        y.log("header: " + headers);
+                        y.log("headerString " + headerString);
+
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
                             response.object = <getresult>{xdata}</getresult>;
