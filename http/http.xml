@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+    <meta>
+        <author>Nickson Jeanmerson</author>
+        <description>Envia (Post) e Recebe (Get) Dados de Sites e Web Service</description>
+        <sampleQuery>SELECT * FROM {table} WHERE url='url' AND data="foo=foo&bar=bar" AND type="post" AND xpath="//p"</sampleQuery>
+        <documentationURL></documentationURL>
+    </meta>
+    <bindings>
+        <select itemPath="" produces="XML">
+            <urls>
+                <url>{url}</url>
+            </urls>
+            <inputs>
+                <key id="url" type="xs:string" required="true" paramType="variable"/>
+                <key id="data" type="xs:string" required="true" paramType="variable"/>
+                <key id="type" type="xs:string" required="false" default="get" paramType="variable"/>
+                <key id="xpath" type="xs:string" required="false" paramType="variable"/>
+                <key id="header" type="xs:string" required="false" paramType="variable"/>
+            </inputs>
+            <execute>
+                <![CDATA[
+                    var headers = header.split(',');
+                    var headerString = '';
+                    for (i = 0; i < headers.length; i++) {
+                        headerString += "'" + headers[i].trim().split(':')[0] + "'" + ',' + "'" + headers[i].trim().split(':')[1] + "'" + ',';
+                    }
+
+                    var _request = y.rest(url);
+                    if(type == 'post') {
+                        if(header) {
+                            var _data = _request.header(headerString.substring(0,headerString.length - 1)).contentType("application/x-www-form-urlencoded").post(data).response;
+                        }
+                        else {
+                            var _data = _request.accept('text/html').contentType("application/x-www-form-urlencoded").post(data).response;
+                        }
+                        if(xpath) {
+                            var xdata = y.xpath(_data,xpath);
+                            response.object = <postresult>{xdata}</postresult>;
+                        }
+                        else {
+                            response.object = <postresult>{_data}</postresult>;
+                        }
+                    }
+                    else {
+                        if(header) {
+                            var _data = _request.header(headerString.substring(0,headerString.length - 1));
+                        }
+                        else {
+                            var _data = _request.get(data).response;
+                        }
+                        if(xpath) {
+                            var xdata = y.xpath(_data,xpath);
+                            response.object = <getresult>{xdata}</getresult>;
+                        }
+                        else {
+                            response.object = <getresult>{_data}</getresult>;
+                        }
+                    }
+                ]]>
+            </execute>
+        </select>
+    </bindings>
+</table>
