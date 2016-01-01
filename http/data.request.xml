@@ -20,10 +20,12 @@
             </inputs>
             <execute>
                 <![CDATA[
-                    var headers = header.split(',');
-                    var headerString = '';
-                    for (i = 0; i < headers.length; i++) {
-                        headerString += "'" + headers[i].trim().split(':')[0] + "'" + ',' + "'" + headers[i].trim().split(':')[1] + "'" + ',';
+                    if(header) {
+                        var headers = header.split(',');
+                        var headerString = '';
+                        for (i = 0; i < headers.length; i++) {
+                            headerString += "'" + headers[i].trim().split(':')[0] + "'" + ',' + "'" + headers[i].trim().split(':')[1] + "'" + ',';
+                        }
                     }
 
                     var _request = y.rest(url);
