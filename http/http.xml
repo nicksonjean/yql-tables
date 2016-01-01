@@ -13,7 +13,7 @@
             </urls>
             <inputs>
                 <key id="url" type="xs:string" required="true" paramType="variable"/>
-                <key id="data" type="xs:string" required="true" paramType="variable"/>
+                <key id="data" type="xs:string" required="false" paramType="variable"/>
                 <key id="type" type="xs:string" required="false" default="get" paramType="variable"/>
                 <key id="xpath" type="xs:string" required="false" paramType="variable"/>
                 <key id="header" type="xs:string" required="false" paramType="variable"/>
