@@ -34,12 +34,11 @@
                     }
                     else {
                         if(format == 'json') {
-                            _data = _request.accept('application/json');
+                            _data = _request.accept('application/json').get(requestdata).response;
                         }
                         else {
-                            _data = _request.accept('text/xml');
+                            _data = _request.accept('text/xml').get(requestdata).response;
                         }
-                        _data = _request.get(requestdata).response;
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
                             response.object = <getresult>{xdata}</getresult>;
