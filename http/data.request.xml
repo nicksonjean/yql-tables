@@ -36,14 +36,17 @@
                         if(headers) {
                             var _headers = headers.split(',');
                             for (i = 0; i < _headers.length; i++) {
-                                _data += _data.header("'" + _headers[i].trim().split(':')[0] + "'" + ',' + "'" + _headers[i].trim().split(':')[1] + "'");
-                                y.log("header1: " + _headers[i].trim().split(':')[0]);
-                                y.log("header2: " + _headers[i].trim().split(':')[1]);
+                                if(_headers[i].trim().split(':')[1].toLowerCase() == 'accept) {
+                                    _data += y.accept("'" + _headers[i].trim().split(':')[1].toLowerCase() + "'");
+                                }
+                                else {
+                                    _data += y.header("'" + _headers[i].trim().split(':')[0] + "'" + ',' + "'" + _headers[i].trim().split(':')[1] + "'");
+                                }
                             }
                             _data = _request.get(requestdata).response;
                         }
                         else {
-                            _data = _request.get(requestdata).response;
+                            _data = _request.accept('application/json').get(requestdata).response;
                         }
 
                         if(xpath) {
