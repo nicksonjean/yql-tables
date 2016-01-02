@@ -24,7 +24,7 @@
                     var _request = y.rest(url);
                     var _data = null;
                     if(data || type == 'post') {
-                        _data = _request.accept('text/html').contentType("application/x-www-form-urlencoded").forceCharset('iso-8859-1').post(data).response;
+                        _data = _request.accept('text/html').contentType("application/x-www-form-urlencoded").post(data).response;
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
                             response.object = <postresult>{xdata}</postresult>;
@@ -35,10 +35,10 @@
                     }
                     else {
                         if(format == 'json') {
-                            _data = _request.accept('application/json').forceCharset('iso-8859-1').get().response;
+                            _data = _request.accept('application/json').get().response;
                         }
                         else {
-                            _data = _request.accept('text/html').forceCharset('iso-8859-1').get().response;
+                            _data = _request.accept('text/html').get().response;
                         }
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
