@@ -2,9 +2,9 @@
 <table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
     <meta>
         <author>Nickson Jeanmerson</author>
-        <description>Envia (Post) e Recebe (Get) Dados de Sites e Web Service</description>
-        <sampleQuery>SELECT * FROM {table} WHERE url='url' AND format='json'</sampleQuery>
-        <sampleQuery>SELECT * FROM {table} WHERE url='url' AND data="foo=foo" AND xpath="//p"</sampleQuery>
+        <description>Submete (Post) e Recebe (Get) Dados de Sites e Web Service</description>
+        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE url='url' AND format='json']]></sampleQuery>
+        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE url='url' AND data="foo=foo&bar=bar" AND xpath="//p"]]></sampleQuery>
         <documentationURL></documentationURL>
     </meta>
     <bindings>
@@ -35,11 +35,12 @@
                     }
                     else {
                         if(format == 'json') {
-                            _data = _request.accept('application/json').get().response;
+                            _data = _request.accept('application/json').fallbackCharset("shift_jis, iso-8859-8, UTF-8, iso-8859-1, Latin1").get().response;
                         }
                         else {
-                            _data = _request.accept('text/html').get().response;
+                            _data = _request.accept('text/html').fallbackCharset("shift_jis, iso-8859-8, UTF-8, iso-8859-1, Latin1").get().response;
                         }
+                        y.log(y.jsonToXml(_data));
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
                             response.object = <getresult>{xdata}</getresult>;
