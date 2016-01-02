@@ -40,7 +40,6 @@
                         else {
                             _data = _request.accept('text/html').fallbackCharset("shift_jis, iso-8859-8, UTF-8, iso-8859-1, Latin1").get().response;
                         }
-                        y.log(y.jsonToXml(_data));
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
                             response.object = <getresult>{xdata}</getresult>;
