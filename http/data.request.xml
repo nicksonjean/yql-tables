@@ -35,10 +35,10 @@
                     }
                     else {
                         if(format == 'json') {
-                            _data = _request.accept('application/json').fallbackCharset("shift_jis, iso-8859-8, UTF-8, iso-8859-1, Latin1").get().response;
+                            _data = _request.accept('application/json').get().response;
                         }
                         else {
-                            _data = _request.accept('text/html').fallbackCharset("shift_jis, iso-8859-8, UTF-8, iso-8859-1, Latin1").get().response;
+                            _data = _request.accept('text/html').get().response;
                         }
                         if(xpath) {
                             var xdata = y.xpath(_data,xpath);
