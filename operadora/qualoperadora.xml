@@ -21,7 +21,7 @@
                     var _ua = random_useragent();
                     var _request = y.rest('http://qualoperadora.info/consulta');
                     var _data = null;
-                    y.log(_ua);
+                    y.log('Log: ', _ua);
                     _data = _request
                                 .accept('text/html')
                                 .contentType("application/x-www-form-urlencoded")
