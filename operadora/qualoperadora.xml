@@ -17,6 +17,8 @@
             </inputs>
             <execute>
                 <![CDATA[
+                    y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/random_useragent/random_useragent.min.js");
+                    var _ua = random_useragent();
                     var _request = y.rest('http://qualoperadora.info/consulta');
                     var _data = null;
                     _data = _request
@@ -24,7 +26,8 @@
                                 .contentType("application/x-www-form-urlencoded")
                                 .header('Accept-Encoding', 'gzip,deflate')
                                 .decompress(true)
-                                .header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36').post('tel='+tel)
+                                .header('User-Agent', _ua)
+                                .post('tel='+tel)
                                 .response;
                     if(xpath) {
                         var xdata = y.xpath(_data,xpath);
