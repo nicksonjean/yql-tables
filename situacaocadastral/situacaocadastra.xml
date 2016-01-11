@@ -3,7 +3,7 @@
     <meta>
         <author>Nickson Jeanmerson</author>
         <description>Verifica a situação cadastral de um CPF ou CNPJ</description>
-        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE doc="foo"]]></sampleQuery>
+        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE doc="foo"]] xpath='//div[@id="resultado"]'></sampleQuery>
         <documentationURL></documentationURL>
     </meta>
     <bindings>
