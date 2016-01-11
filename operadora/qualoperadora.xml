@@ -2,8 +2,8 @@
 <table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
     <meta>
         <author>Nickson Jeanmerson</author>
-        <description>Verifica a situação cadastral de um CPF ou CNPJ</description>
-        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE doc="foo" AND xpath='//div[@id="resultado"]']]></sampleQuery>
+        <description>Verifica a operadora de um número telefênico</description>
+        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE tel="foo" AND xpath='//div[@class="resultado"]']]></sampleQuery>
         <documentationURL></documentationURL>
     </meta>
     <bindings>
@@ -12,19 +12,18 @@
                 <url>{url}</url>
             </urls>
             <inputs>
-                <key id="doc" type="xs:string" required="true" paramType="variable"/>
+                <key id="tel" type="xs:string" required="true" paramType="variable"/>
                 <key id="xpath" type="xs:string" required="false" paramType="variable"/>
             </inputs>
             <execute>
                 <![CDATA[
-                    var _request = y.rest('http://www.situacaocadastral.com.br/');
+                    var _request = y.rest('http://qualoperadora.info/consulta');
                     var _data = null;
                     _data = _request
                                 .accept('text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8')
                                 .contentType("application/x-www-form-urlencoded")
                                 .header('Accept-Encoding', 'gzip,deflate')
-                                .header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36').post('doc='+doc)
-                                .decompress(true)
+                                .header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36').post('tel='+tel)
                                 .response;
                     if(xpath) {
                         var xdata = y.xpath(_data,xpath);
