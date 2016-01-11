@@ -20,9 +20,10 @@
                     var _request = y.rest('http://qualoperadora.info/consulta');
                     var _data = null;
                     _data = _request
-                                .accept('text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8')
+                                .accept('text/html')
                                 .contentType("application/x-www-form-urlencoded")
                                 .header('Accept-Encoding', 'gzip,deflate')
+                                .decompress(true)
                                 .header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36').post('tel='+tel)
                                 .response;
                     if(xpath) {
