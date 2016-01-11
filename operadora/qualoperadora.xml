@@ -30,6 +30,7 @@
                                 .header('Origin', 'http//qualoperadora.info')
                                 .header('Referer', 'http//qualoperadora.info/')
                                 .decompress(true)
+                                .followRedirects(false)
                                 .header('User-Agent', _ua)
                                 .post('tel='+tel)
                                 .response;
