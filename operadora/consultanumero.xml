@@ -21,7 +21,7 @@
                     var _ua = random_useragent();
                     var _request = y.rest('http://consultanumero.info/consulta');
                     var _data = null;
-                    y.log('Log: ' + _ua);
+                    y.log('Log: ' + _ua.toString().replace(/,/g, ""));
                     _data = _request
                                 .accept('text/html')
                                 .contentType("application/x-www-form-urlencoded")
