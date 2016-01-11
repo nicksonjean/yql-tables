@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+    <meta>
+        <author>Nickson Jeanmerson</author>
+        <description>Verifica a situação cadastral de um CPF ou CNPJ</description>
+        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE doc="foo"]]></sampleQuery>
+        <documentationURL></documentationURL>
+    </meta>
+    <bindings>
+        <select itemPath="" produces="XML">
+            <urls>
+                <url>{url}</url>
+            </urls>
+            <inputs>
+                <key id="doc" type="xs:string" required="true" paramType="variable"/>
+                <key id="xpath" type="xs:string" required="false" paramType="variable"/>
+            </inputs>
+            <execute>
+                <![CDATA[
+                    var _request = y.rest('http://www.situacaocadastral.com.br/');
+                    var _data = null;
+                    _data = _request
+                                .accept('text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8')
+                                .contentType("application/x-www-form-urlencoded")
+                                .header("Accept-Encoding","gzip, deflate")
+                                .header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36').post('doc='+doc)
+                                .response;
+                    if(xpath) {
+                        var xdata = y.xpath(_data,xpath);
+                        response.object = <postresult>{xdata}</postresult>;
+                    }
+                    else {
+                        response.object = <postresult>{_data}</postresult>;
+                    }
+                ]]>
+            </execute>
+        </select>
+    </bindings>
+</table>
