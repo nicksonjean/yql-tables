@@ -41,7 +41,7 @@
                     function handleRedirect(request) {
                         while (request.status == 301 || request.status == 302) {
                             cookie = getcookie(request.headers, cookie);
-                            request = y.rest(request.headers.location).accept("text/html"); 
+                            request = y.rest(request.headers.location).accept("text/html");
                             if (cookie != "") { 
                                 request = request.header("Cookie", cookie);
                             }
