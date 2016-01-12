@@ -22,6 +22,34 @@
                     var _request = y.rest('http://qualoperadora.info/consulta');
                     var _data = null;
                     y.log('Log: ' + _ua.toString().replace(/,/g, ""));
+
+                    var cookie = "";
+                    function getcookie(headers, cookie) {
+                        var cookies = headers['set-cookie'];
+                        if (cookies instanceof Array) { 
+                            for (c in cookies) { 
+                                cookie += cookies[c].split(';')[0] + "; "
+                            }
+                        }
+                        else {
+                            if (cookies) {
+                                cookie = cookies.split(';')[0] + "; ";
+                            }
+                        }
+                        return cookie;
+                    }
+                    function handleRedirect(request) {
+                        while (request.status == 301 || request.status == 302) {
+                            cookie = getcookie(request.headers, cookie);
+                            request = y.rest(request.headers.location).accept("text/html"); 
+                            if (cookie != "") { 
+                                request = request.header("Cookie", cookie);
+                            }
+                            request = request.get();
+                        }
+                        return request;
+                    }
+
                     _data = _request
                                 .accept('text/html')
                                 .contentType("application/x-www-form-urlencoded")
