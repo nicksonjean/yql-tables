@@ -45,26 +45,9 @@
 
                       document.body.appendChild(form);
 
-                      if ( iframe.contentDocument ){
-                        doc = iframe.contentDocument;
-                      }else if( iframe.contentWindow ){
-                        doc = iframe.contentWindow.document;
-                      }else if ( document.frames ){
-                        doc = document.frames[iframe.name].document;
-                      }else if( window.frames[iframe.name] ){
-                        doc = window.frames[iframe.name].document;
-                      }
-
                       form.submit();
 
-                      if ( !( !doc.readyState || doc.readyState && doc.readyState == 'complete' ) ) {
-                      }
-                      if ( !( doc.body && doc.body.innerHTML ) ) {
-                      }
-
                     }
-
-                    window.onload = crossDomainPost;
 
                 ]]>
             </execute>
