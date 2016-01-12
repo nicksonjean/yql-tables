@@ -21,7 +21,7 @@
                     var _ua = random_useragent();
                     var _request = y.rest('http://qualoperadora.info/consulta');
                     var _data = null;
-                    y.log('Log: ' + _ua.toString().replace(/,/g, ""));
+                    y.log('Browser: ' + _ua.toString().replace(/,/g, ""));
 
                     var cookie = "";
                     function getcookie(headers, cookie) {
