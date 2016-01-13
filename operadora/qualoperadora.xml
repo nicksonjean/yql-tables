@@ -54,7 +54,7 @@
 
                     var _request = y.rest(_url + 'consulta');
                     var _data = null;
-                    y.log('Cookies: ' + _request.headers.location);
+                    y.log('Cookies: ' + _request);
                     y.log('Browser: ' + _ua.toString().replace(/,/g, ""));
 
                     _data = _request
