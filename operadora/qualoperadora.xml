@@ -33,10 +33,10 @@
                         }
                         return cookie;
                     }
-                    function handleRedirect(request) {
+                    function handleRedirect(request, url) {
                         while (request.status == 301 || request.status == 302) {
                             cookie = getcookie(request.headers, cookie);
-                            request = y.rest(request.headers.location).accept("text/html");
+                            request = y.rest(url).accept("text/html");
                             if (cookie != "") { 
                                 request = request.header("Cookie", cookie);
                             }
@@ -48,8 +48,8 @@
                     var _ua = random_useragent();
                     var _url = 'http://qualoperadora.info/';
 
-                    var request = y.rest(_url).followRedirects(false).accept("text/html").get().response;
-                    request = handleRedirect(request);
+                    var request = y.rest(_url).followRedirects(false).accept("text/html").get();
+                    request = handleRedirect(request, _url);
                     var headers = request.headers;
 
                     var _request = y.rest(_url + 'consulta');
