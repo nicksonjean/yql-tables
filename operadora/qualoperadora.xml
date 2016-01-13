@@ -18,11 +18,6 @@
             <execute>
                 <![CDATA[
                     y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/random_useragent/random_useragent.min.js");
-                    var _ua = random_useragent();
-                    var _request = y.rest('http://qualoperadora.info/consulta');
-                    var _data = null;
-                    y.log('Browser: ' + _ua.toString().replace(/,/g, ""));
-
                     var cookie = "";
                     function getcookie(headers, cookie) {
                         var cookies = headers['set-cookie'];
@@ -50,6 +45,16 @@
                         return request;
                     }
 
+                    var _ua = random_useragent();
+                    var _url = 'http://qualoperadora.info/';
+
+                    var request = y.rest(_url).followRedirects(false).accept("text/html").get();
+                    request = handleRedirect(request);
+
+                    var _request = y.rest(_url + 'consulta');
+                    var _data = null;
+                    y.log('Browser: ' + _ua.toString().replace(/,/g, ""));
+
                     _data = _request
                                 .accept('text/html')
                                 .contentType("application/x-www-form-urlencoded")
@@ -57,11 +62,13 @@
                                 .header('Accept-Language', 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4')
                                 .header('Origin', 'http//qualoperadora.info')
                                 .header('Referer', 'http//qualoperadora.info/')
+                                .header('Cookie', cookie)
                                 .decompress(true)
                                 .followRedirects(false)
                                 .header('User-Agent', _ua)
                                 .post('tel='+tel)
                                 .response;
+
                     if(xpath) {
                         var xdata = y.xpath(_data,xpath);
                         response.object = <postresult>{xdata}</postresult>;
