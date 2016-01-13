@@ -48,7 +48,7 @@
                     var _ua = random_useragent();
                     var _url = 'http://qualoperadora.info/';
 
-                    var request = y.rest(_url).followRedirects(false).accept("text/html").get();
+                    var request = y.rest(_url).followRedirects(false).accept("text/html").get().response;
                     request = handleRedirect(request);
                     var headers = request.headers;
 
