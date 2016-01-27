@@ -33,7 +33,7 @@
                     var xdata = y.xpath(_data,'//div[@class="resultado"]');
                     var data = <phone/>
                     for each (var phone in xdata) {
-                        data.results += <phone>{ phone }</phone>
+                        data.results += <carrier>{ phone.div }</carrier>
                     }
                     response.object = data;
                 ]]>
