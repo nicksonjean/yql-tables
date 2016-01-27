@@ -31,9 +31,11 @@
                                 .post('tel='+tel)
                                 .response;
                     var xdata = y.xpath(_data,'//div[@class="resultado"]');
+                    var data = <results />
                     for each (var phone in xdata.results) {
+                        data.results += <city>{ phone }</city>
                     }
-                    //response.object = <postresult>{xdata}</postresult>;
+                    response.object = data;
                 ]]>
             </execute>
         </select>
