@@ -3,7 +3,7 @@
     <meta>
         <author>Nickson Jeanmerson</author>
         <description>Verifica a operadora de um número telefênico</description>
-        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE tel="foo" AND xpath='//div[@class="resultado"]']]></sampleQuery>
+        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE tel="foo"]]></sampleQuery>
         <documentationURL></documentationURL>
     </meta>
     <bindings>
@@ -13,7 +13,6 @@
             </urls>
             <inputs>
                 <key id="tel" type="xs:string" required="true" paramType="variable"/>
-                <key id="xpath" type="xs:string" required="false" paramType="variable"/>
             </inputs>
             <execute>
                 <![CDATA[
@@ -26,18 +25,15 @@
                     _data = _request
                                 .accept('text/html')
                                 .contentType("application/x-www-form-urlencoded")
+                                .header('User-Agent', _ua)
                                 .header('Accept-Encoding', 'gzip,deflate')
                                 .decompress(true)
-                                .header('User-Agent', _ua)
                                 .post('tel='+tel)
                                 .response;
-                    if(xpath) {
-                        var xdata = y.xpath(_data,xpath);
-                        response.object = <postresult>{xdata}</postresult>;
+                    var xdata = y.xpath(_data,'//div[@class="resultado"]');
+                    for each (var phone in xdata.results) {
                     }
-                    else {
-                        response.object = <postresult>{_data}</postresult>;
-                    }
+                    //response.object = <postresult>{xdata}</postresult>;
                 ]]>
             </execute>
         </select>
