@@ -32,7 +32,7 @@
                                 .response;
                     var xdata = y.xpath(_data,'//div[@class="resultado"]');
                     var data = <results />
-                    for each (var phone in xdata.results) {
+                    for each (var phone in xdata) {
                         data.results += <city>{ phone }</city>
                     }
                     response.object = data;
