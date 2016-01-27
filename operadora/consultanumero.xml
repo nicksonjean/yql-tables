@@ -31,9 +31,9 @@
                                 .post('tel='+tel)
                                 .response;
                     var xdata = y.xpath(_data,'//div[@class="resultado"]');
-                    var data = <results />
+                    var data = <phone/>
                     for each (var phone in xdata) {
-                        data += <phone>{ phone }</phone>
+                        data.results += <phone>{ phone }</phone>
                     }
                     response.object = data;
                 ]]>
