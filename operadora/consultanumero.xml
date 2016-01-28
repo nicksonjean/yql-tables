@@ -30,11 +30,15 @@
                                 .decompress(true)
                                 .post('tel='+tel)
                                 .response;
-                    var xdata = y.xpath(_data,'//div[@class="resultado"]');
+
+                    var _root = y.xpath(_data,'//div[@class="resultado"]');
+
                     var data = <phone/>
-                    for each (var phone in xdata..div) {
-                        data.results += <carrier>{ phone }</carrier>
-                    }
+                    var carrier = y.xpath(_root, '//div[@class="a"]/img/@title').toString();
+                        data += <carrier>{ carrier }</carrier>
+                    var logo = y.xpath(_root, '//div[@class="a"]/img/@src').toString();
+                        data += <logo>{ logo }</logo>
+
                     response.object = data;
                 ]]>
             </execute>
