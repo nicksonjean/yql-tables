@@ -32,7 +32,7 @@
                                 .response;
 
                     var _root = y.xpath(_data,'//div[@class="resultado"]');
-                    y.log('Root: ', y.xpath(_data,'//div[@class="resultado"]/script/text()').toString());
+                    y.log('Root: ', y.xpath(_data,'//div[@class="resultado"]/p/b/text()').toString());
 
                     var data = <phone />
 
