@@ -35,11 +35,11 @@
 
                     var data = <phone/>
 
-                    var carrier = y.xpath(_root, '//div[@class="a"]/img/@title').toString();
+                    var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
                     y.log('Carrier: ' + carrier);
                         data += <carrier>{ carrier }</carrier>
 
-                    var logo = y.xpath(_root, '//div[@class="a"]/img/@src').toString();
+                    var logo = y.xpath(_data, '//div[@class="a"]/img/@src').toString();
                     y.log('Logo: ' + logo);
                         data += <logo>{ logo }</logo>
 
