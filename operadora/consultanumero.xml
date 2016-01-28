@@ -32,15 +32,19 @@
                                 .response;
 
                     var _root = y.xpath(_data,'//div[@class="resultado"]');
-                    var data = <results />
+                    var data = <phone />
 
                     var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
                     y.log('Carrier: ' + carrier);
-                        data.results += <carrier>{ carrier }</carrier>
+                        data.phone += <carrier>{ carrier }</carrier>
 
                     var logo = y.xpath(_data, '//div[@class="a"]/img/@src').toString();
                     y.log('Logo: ' + logo);
-                        data.results += <logo>{ logo }</logo>
+                        data.phone += <logo>{ logo }</logo>
+
+                    var number = y.xpath(_data, '//div[@class="a"]/div[@class="tel"]/text()').toString();
+                    y.log('Number: ' + number);
+                        data.phone += <number>{ number }</number>
 
                     response.object = data;
                 ]]>
