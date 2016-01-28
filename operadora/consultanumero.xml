@@ -32,6 +32,8 @@
                                 .response;
 
                     var _root = y.xpath(_data,'//div[@class="resultado"]');
+					y.log('Root: ', _root.@['script']);
+
                     var data = <phone />
 
                     var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
