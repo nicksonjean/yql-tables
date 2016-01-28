@@ -31,7 +31,7 @@
                                 .post('tel='+tel)
                                 .response;
 
-                    var data = <phone />
+                    var data.results = <phone />
 
                     var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
                     y.log('Carrier: ' + carrier);
