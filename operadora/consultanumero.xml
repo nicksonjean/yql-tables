@@ -31,7 +31,7 @@
                                 .post('tel='+tel)
                                 .response;
 
-                    var data.results = <phone />
+                    var data = <phone />
 
                     var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
                     y.log('Carrier: ' + carrier);
@@ -42,9 +42,9 @@
                     var number = y.xpath(_data, '//div[@class="a"]/div[@class="tel"]/text()').toString();
                     y.log('Number: ' + number);
 
-                    data += <carrier>{ carrier }</carrier>
-                    data += <logo>{ logo }</logo>
-                    data += <number>{ number }</number>
+                    data.results += <carrier>{ carrier }</carrier>
+                    data.results += <logo>{ logo }</logo>
+                    data.results += <number>{ number }</number>
 
                     response.object = data;
                 ]]>
