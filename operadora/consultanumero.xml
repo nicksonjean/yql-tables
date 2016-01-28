@@ -31,12 +31,16 @@
                                 .post('tel='+tel)
                                 .response;
 
-                    var _root = y.xpath(_data,'//div[@class="resultado"]');
+                    var _root = y.xpath(_data,'//div[@class="resultado"]/div');
 
                     var data = <phone/>
+
                     var carrier = y.xpath(_root, '//div[@class="a"]/img/@title').toString();
+                    y.log('Carrier: ' + carrier);
                         data += <carrier>{ carrier }</carrier>
+
                     var logo = y.xpath(_root, '//div[@class="a"]/img/@src').toString();
+                    y.log('Logo: ' + logo);
                         data += <logo>{ logo }</logo>
 
                     response.object = data;
