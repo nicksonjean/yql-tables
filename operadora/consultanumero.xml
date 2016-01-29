@@ -32,8 +32,8 @@
                                 .response;
 
                     var _root = y.xpath(_data, '//div[@class="resultado"]/p[1]/b/text()');
-                    var _logs = y.xpath(_data, '//div[@class="resultado"]/p[1]/b/text()');
-                    y.log('Limit: ', escape(_logs));
+                    var _logs = y.xpath(_data, '//div[@class="resultado"]/p[1]/b/text()').toString().replace(/,/g, "");
+                    y.log('Limit: ', _logs);
 
                     response.object = <postresult>{_root}</postresult>;
                 ]]>
