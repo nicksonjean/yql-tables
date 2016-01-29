@@ -35,7 +35,8 @@
                     var _limit = <limit>{_root}</limit>;
 
                     y.log(_limit.limit);
-                    response.object = _limit;
+
+                    response.object = <limit>{_root}</limit>;
                 ]]>
             </execute>
         </select>
