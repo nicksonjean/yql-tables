@@ -31,10 +31,10 @@
                                 .post('tel='+tel)
                                 .response;
 
-                    var _root = y.xpath(_data,'//div[@class="resultado"]/p[1]/b/text()').toString();
-                    y.log('Root: ', _root);
-
                     var data = <phone />
+
+                    var _root = y.xpath(_data, '//div[@class="resultado"]/p[1]/b/text()');
+                    y.log('Root: ', _root);
 
                     var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
                     y.log('Carrier: ' + carrier);
