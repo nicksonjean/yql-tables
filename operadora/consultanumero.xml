@@ -32,7 +32,7 @@
                                 .response;
 
                     var _root = y.xpath(_data,'//div[@class="resultado"]/p/b/text()');
-                    response.object = _root;
+                    response.object = {_root};
                 ]]>
             </execute>
         </select>
