@@ -33,7 +33,7 @@
 
                     var _root = y.xpath(_data, '//div[@class="resultado"]');
 
-                    response.object = _root.results..p.b;
+                    response.object = _root.results..p;
                 ]]>
             </execute>
         </select>
