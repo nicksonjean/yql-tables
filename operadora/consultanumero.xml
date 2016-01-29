@@ -34,7 +34,7 @@
 
                     var _limit = y.xpath(_data,'//div[@class="resultado"]');
                     for each (var phone in _limit) {
-                        y.log('Limit: ' + phone.p.toString());
+                        y.log('Limit: ' + phone.p[0].b.toString());
                     }
 
                     var _root = y.xpath(_data,'//div[@class="resultado"]/p[1]/b/text()');
