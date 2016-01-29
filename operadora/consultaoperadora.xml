@@ -3,7 +3,7 @@
     <meta>
         <author>Nickson Jeanmerson</author>
         <description>Verifica a operadora de um número telefênico</description>
-        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE tel="foo" AND xpath='//div[@class="resultado"]']]></sampleQuery>
+        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE tel="foo"]]></sampleQuery>
         <documentationURL></documentationURL>
     </meta>
     <bindings>
@@ -13,7 +13,6 @@
             </urls>
             <inputs>
                 <key id="tel" type="xs:string" required="true" paramType="variable"/>
-                <key id="xpath" type="xs:string" required="false" paramType="variable"/>
             </inputs>
             <execute>
                 <![CDATA[
@@ -33,7 +32,6 @@
                                 .response;
 
                     var _root = y.xpath(_data,'//div[@id="resultado_num"] /div[@class="row"]');
-
                     var _result = <phone />
 
                     var carrier = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[2]/text()').toString();
