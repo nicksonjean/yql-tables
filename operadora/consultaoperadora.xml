@@ -31,13 +31,28 @@
                                 .header('User-Agent', _ua)
                                 .post('tipo=consulta&numero='+tel)
                                 .response;
-                    if(xpath) {
-                        var xdata = y.xpath(_data,xpath);
-                        response.object = <postresult>{xdata}</postresult>;
-                    }
-                    else {
-                        response.object = <postresult>{_data}</postresult>;
-                    }
+
+                    var _root = y.xpath(_data,'//div[@id="resultado_num"] /div[@class="row"]');
+
+                    var _result = <phone />
+
+                    var carrier = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[2]/text()').toString();
+                    y.log('Carrier: ' + carrier);
+                        _result.phone += <carrier>{ carrier }</carrier>
+
+                    var logo = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/center/div/img[@src]').toString();
+                    y.log('Logo: ' + logo);
+                        _result.phone += <logo>{ logo }</logo>
+
+                    var number = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[6]/text()').toString();
+                    y.log('Number: ' + number);
+                        _result.phone += <number>{ number }</number>
+
+                    var ported = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[4]/text()').toString();
+                    y.log('Ported ' + ported);
+                        _result.phone += <ported>{ ported }</ported>
+
+                    response.object = _result;
                 ]]>
             </execute>
         </select>
