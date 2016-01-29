@@ -31,7 +31,9 @@
                                 .post('tel='+tel)
                                 .response;
 
-                    var _root = y.xpath(_data,'//div[@class="resultado"]/p/b/text()');
+                    var _root = y.xpath(_data,'//div[@class="resultado"]/p[1]/b/text()');
+                    var _log = <postresult>{_root}</postresult>;
+                    y.log(_log);
                     response.object = <postresult>{_root}</postresult>;
                 ]]>
             </execute>
