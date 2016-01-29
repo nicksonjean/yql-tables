@@ -31,11 +31,13 @@
                                 .post('tel='+tel)
                                 .response;
 
+
+                    var _limit = y.xpath(_data,'//div[@class="resultado"]');
+                    for each (var phone in _limit) {
+                        y.log('Limit: ' + phone.p.toString());
+                    }
+
                     var _root = y.xpath(_data,'//div[@class="resultado"]/p[1]/b/text()');
-                    var _limit = <limit>{_root}</limit>;
-
-                    y.log(_limit.toString().replace(/,/g, ""));
-
                     response.object = <limit>{_root}</limit>;
                 ]]>
             </execute>
