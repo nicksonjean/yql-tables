@@ -33,7 +33,7 @@
 
                     var _root = y.xpath(_data,'//div[@class="resultado"]/p[1]/b/text()');
                     var _log = <postresult>{_root}</postresult>;
-                    y.log(_log);
+                    y.log(_log.postresult);
                     response.object = <postresult>{_root}</postresult>;
                 ]]>
             </execute>
