@@ -32,13 +32,28 @@
                                 .response;
 
 
-                    var _limit = y.xpath(_data,'//div[@class="resultado"]');
-                    for each (var phone in _limit) {
-                        y.log('Limit: ' + phone.p[0].b.toString());
+                    var _root = y.xpath(_data,'//div[@class="resultado"]');
+                    if(_root.elements('p').length() >= 0) {
+                        y.log('Limit: ' + _root.p[0].b.toString());
+                        response.object = <limit>{ _root.p[0].b.toString() }</limit>;
                     }
+                    else {
+                        var data = <phone />
 
-                    var _root = y.xpath(_data,'//div[@class="resultado"]/p[1]/b/text()');
-                    response.object = <limit>{_root}</limit>;
+                        var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
+                        y.log('Carrier: ' + carrier);
+                            data.phone += <carrier>{ carrier }</carrier>
+
+                        var logo = y.xpath(_data, '//div[@class="a"]/img/@src').toString();
+                        y.log('Logo: ' + logo);
+                            data.phone += <logo>{ logo }</logo>
+
+                        var number = y.xpath(_data, '//div[@class="a"]/div[@class="tel"]/text()').toString();
+                        y.log('Number: ' + number);
+                            data.phone += <number>{ number }</number>
+
+                        response.object = data;
+                    }
                 ]]>
             </execute>
         </select>
