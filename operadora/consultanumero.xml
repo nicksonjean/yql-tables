@@ -32,9 +32,10 @@
                                 .response;
 
                     var _root = y.xpath(_data,'//div[@class="resultado"]/p[1]/b/text()');
-                    var _log = <postresult>{_root}</postresult>;
-                    y.log(_log.postresult);
-                    response.object = <postresult>{_root}</postresult>;
+                    var _limit = <limit>{_root}</limit>;
+
+                    y.log(_limit.limit);
+                    response.object = _limit;
                 ]]>
             </execute>
         </select>
