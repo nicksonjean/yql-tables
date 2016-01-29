@@ -33,7 +33,7 @@
 
                     var data = <phone />
 
-                    var _root = y.xpath(_data, '//div[@class="resultado"]/p[1]/b/text()');
+                    var _root = y.xpath(_data, '//div[@class="resultado"]/p[1]/b');
                     y.log('Root: ', _root);
 
                     var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
