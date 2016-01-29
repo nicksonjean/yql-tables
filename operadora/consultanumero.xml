@@ -31,13 +31,6 @@
                                 .post('tel='+tel)
                                 .response;
 
-
-                    var _root = y.xpath(_data,'//div[@class="resultado"]');
-                    if(_root.elements('p').length() >= 0) {
-                        y.log('Limit: ' + _root.p[0].b.toString());
-                        response.object = <limit>{ _root.p[0].b.toString() }</limit>;
-                    }
-                    else {
                         var data = <phone />
 
                         var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
@@ -53,7 +46,7 @@
                             data.phone += <number>{ number }</number>
 
                         response.object = data;
-                    }
+
                 ]]>
             </execute>
         </select>
