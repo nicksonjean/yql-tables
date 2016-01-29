@@ -34,7 +34,7 @@
                     var _root = y.xpath(_data,'//div[@class="resultado"]/p[1]/b/text()');
                     var _limit = <limit>{_root}</limit>;
 
-                    y.log(_limit.limit);
+                    y.log(_limit.results.limit);
 
                     response.object = <limit>{_root}</limit>;
                 ]]>
