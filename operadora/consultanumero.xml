@@ -31,9 +31,6 @@
                                 .post('tel='+tel)
                                 .response;
 
-                    var _root = y.xpath(_data,'//div[@class="resultado"]/p/b/text()').toString();
-                    y.log('Root: ', _root);
-
                     var data = <phone />
 
                     var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
