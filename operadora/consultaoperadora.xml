@@ -38,7 +38,7 @@
                     y.log('Carrier: ' + carrier);
                         _result.phone += <carrier>{ carrier }</carrier>
 
-                    var logo = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/center/div/img[@src]').toString();
+                    var logo = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/center/div/img/@src').toString();
                     y.log('Logo: ' + logo);
                         _result.phone += <logo>{ logo }</logo>
 
