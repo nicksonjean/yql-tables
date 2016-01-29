@@ -31,24 +31,9 @@
                                 .post('tel='+tel)
                                 .response;
 
-                    var data = <phone />
-
                     var _root = y.xpath(_data, '//div[@class="resultado"]').toString();
-                    y.log('Root: ', unescape(_root));
 
-                    var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
-                    y.log('Carrier: ' + carrier);
-                        data.phone += <carrier>{ carrier }</carrier>
-
-                    var logo = y.xpath(_data, '//div[@class="a"]/img/@src').toString();
-                    y.log('Logo: ' + logo);
-                        data.phone += <logo>{ logo }</logo>
-
-                    var number = y.xpath(_data, '//div[@class="a"]/div[@class="tel"]/text()').toString();
-                    y.log('Number: ' + number);
-                        data.phone += <number>{ number }</number>
-
-                    response.object = data;
+                    response.object = _root;
                 ]]>
             </execute>
         </select>
