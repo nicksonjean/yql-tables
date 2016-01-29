@@ -31,9 +31,9 @@
                                 .post('tel='+tel)
                                 .response;
 
-                    var _root = y.xpath(_data, '//div[@class="resultado"]/p');
+                    var _root = y.xpath(_data, '//div[@class="resultado"]');
 
-                    response.object = _root;
+                    response.object = _root.results..p.b;
                 ]]>
             </execute>
         </select>
