@@ -35,7 +35,7 @@
                     var _result = <phone />
 
                     var carrier = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[2]/text()').toString();
-                    var carrier_name = ''/
+                    var carrier_name = '';
                     y.log('Carrier: ' + carrier);
                     if(/Telefônica Brasil/.test(type))
                         carrier_name = "Vivo";
