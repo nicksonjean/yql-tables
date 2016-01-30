@@ -25,29 +25,14 @@
                     _data = _request
                                 .accept('text/html')
                                 .contentType("application/x-www-form-urlencoded")
-                                .header('User-Agent', _ua)
                                 .header('Accept-Encoding', 'gzip,deflate')
                                 .decompress(true)
+                                .header('User-Agent', _ua)
                                 .post('tel='+tel)
                                 .response;
 
-
-                        var _result = <phone />
-
-                        var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
-                        y.log('Carrier: ' + carrier);
-                            _result.phone += <carrier>{ carrier }</carrier>
-
-                        var logo = y.xpath(_data, '//div[@class="a"]/img/@src').toString();
-                        y.log('Logo: ' + logo);
-                            _result.phone += <logo>{ logo }</logo>
-
-                        var number = y.xpath(_data, '//div[@class="a"]/div[@class="tel"]/text()').toString();
-                        y.log('Number: ' + number);
-                            _result.phone += <number>{ number }</number>
-
-                        response.object = _result;
-
+                    var _root = y.xpath(_data,'//div[@class="resultado"]');
+                    response.object = <postresult>{_root}</postresult>;
                 ]]>
             </execute>
         </select>
