@@ -32,7 +32,31 @@
                                 .response;
 
                     var _root = y.xpath(_data,'//div[@class="resultado"]');
-                    response.object = <postresult>{_root}</postresult>;
+                    if(_root.b.length() >= 0) {
+                        y.log('Limit: ' + _root.p[0].b.toString());
+                        response.object = <limit>{ _root.p[0].b.toString() }</limit>;
+                    }
+                    else {
+                        var _result = <phone />
+
+                        var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString();
+                        y.log('Carrier: ' + carrier);
+                            _result.phone += <carrier>{ carrier }</carrier>
+
+                        var logo = y.xpath(_data, '//div[@class="a"]/img/@src').toString();
+                        y.log('Logo: ' + logo);
+                            _result.phone += <logo>{ logo }</logo>
+
+                        var number = y.xpath(_data, '//div[@class="a"]/div[@class="tel"]/text()').toString();
+                        y.log('Number: ' + number);
+                            _result.phone += <number>{ number }</number>
+
+                        var ported = y.xpath(_data, '//div[@class="b"]/p[1]/text()').toString();
+                        y.log('Ported ' + ported);
+                            _result.phone += <ported>{ ported }</ported>
+
+                        response.object = _result;
+                    }
                 ]]>
             </execute>
         </select>
