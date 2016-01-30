@@ -38,7 +38,7 @@
                     var carrier_name = '';
                     y.log('Carrier: ' + carrier);
 
-                    if(/Telefônica Brasil/.test(type)) {
+                    if(/Telefônica Brasil/.test(carrier)) {
                         carrier_name = "Vivo";
                     }
                     else {
@@ -62,6 +62,12 @@
                     _result.phone += <logo>{ logo }</logo>
 
                     var number = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[6]/text()').toString();
+                    if(number.length == 10) {
+                        number = '(' + number.substring(0, 2) + ')' + ' ' + number.substring(2, 6) + '-' + number.substring(6, 10);
+                    }
+                    else {
+                        number = '(' + number.substring(0, 2) + ')' + ' ' + number.substring(2, 7) + '-' + number.substring(7, 11);
+                    }
                     y.log('Number: ' + number);
                     _result.phone += <number>{ number }</number>
 
