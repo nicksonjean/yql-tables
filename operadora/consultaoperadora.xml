@@ -36,7 +36,7 @@
 
                     var carrier = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[2]/text()').toString();
                     var carrier_name = '';
-                    //y.log('Raw Carrier: ' + carrier);
+                    y.log('Raw Carrier: ' + carrier);
 
                     if(/Telefônica Brasil/.test(carrier)) {
                         carrier_name = "Vivo";
@@ -73,7 +73,7 @@
                     _result.phone += <number>{ number }</number>
 
                     var ported = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[4]/text()').toString();
-                    y.log('Ported ' + ported);
+                    y.log('Ported: ' + ported);
                     _result.phone += <ported>{ ported }</ported>
 
                     response.object = _result;
