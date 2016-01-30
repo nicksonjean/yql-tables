@@ -35,20 +35,33 @@
                     var _result = <phone />
 
                     var carrier = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[2]/text()').toString();
+                    var carrier_name = ''/
                     y.log('Carrier: ' + carrier);
-                        _result.phone += <carrier>{ carrier }</carrier>
+                    if(/Telefônica Brasil/.test(type))
+                        carrier_name = "Vivo";
+                    else 
+                        carrier_name = type.split(' ')[0];
+                    _result.phone += <carrier>{ carrier_name }</carrier>
+
+                    var type = '';
+                    if(/Fixo/.test(carrier))
+                        type = 'Fixo';
+                    else 
+                        type = 'Celular';
+                    y.log('Type: ' + type);
+                    _result.phone += <type>{ type }</type>
 
                     var logo = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/center/div/img/@src').toString();
                     y.log('Logo: ' + logo);
-                        _result.phone += <logo>{ logo }</logo>
+                    _result.phone += <logo>{ logo }</logo>
 
                     var number = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[6]/text()').toString();
                     y.log('Number: ' + number);
-                        _result.phone += <number>{ number }</number>
+                    _result.phone += <number>{ number }</number>
 
                     var ported = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[4]/text()').toString();
                     y.log('Ported ' + ported);
-                        _result.phone += <ported>{ ported }</ported>
+                    _result.phone += <ported>{ ported }</ported>
 
                     response.object = _result;
                 ]]>
