@@ -31,10 +31,10 @@
                                 .post('tel='+tel)
                                 .response;
 
-                    var _root = y.xpath(_data,'//div[@class="resultado"]');
-                    if(_root.b.length() >= 0) {
-                        y.log('Limit: ' + _root.p[0].b.toString());
-                        response.object = <limit>{ _root.p[0].b.toString() }</limit>;
+                    var _root = y.xpath(_data,'//div[@class="resultado"]/p[1]');
+                    if(_root.b.length() > 0) {
+                        y.log('Limit: ' + _root.b.toString());
+                        response.object = <limit>{ _root.b.toString() }</limit>;
                     }
                     else {
                         var _result = <phone />
