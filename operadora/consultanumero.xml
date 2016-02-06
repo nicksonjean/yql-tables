@@ -75,7 +75,7 @@
                             _result.phone += <number>{ number }</number>
 
                         var ported = y.xpath(_data, '//div[@class="b"]/p[2]/text()').toString().toUpperCase();
-                        y.log('Ported ' + ported);
+                        y.log('Ported: ' + ported);
                             _result.phone += <ported>{ ported }</ported>
 
                         response.object = _result;
