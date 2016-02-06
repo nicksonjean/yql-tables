@@ -13,6 +13,8 @@
             </urls>
             <inputs>
                 <key id="tel" type="xs:string" required="true" paramType="variable"/>
+                <key id="logo" type="xs:boolean" required="false" paramType="variable" default="false"/>
+                <key id="mono" type="xs:boolean" required="false" paramType="variable" default="false"/>
             </inputs>
             <execute>
                 <![CDATA[
@@ -57,9 +59,26 @@
                     y.log('Type: ' + type);
                     _result.phone += <type>{ type }</type>
 
-                    var logo = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/center/div/img/@src').toString().trim();
-                    y.log('Logo: ' + logo);
-                    _result.phone += <logo>{ logo }</logo>
+                    if(logo == true) {
+                        if(mono == false) {
+                            y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/show_carrier_logo/color/show_carrier_logo.min.js");
+                            var _logo = show_carrier_logo('COLOR',carrier_name.toUpperCase());
+                        }
+                        if(mono == true) {
+                            y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/show_carrier_logo/mono/show_carrier_logo.min.js");
+                            var _logo = show_carrier_logo('MONO',carrier_name.toUpperCase());
+                        }
+                        y.log('Logo: ' + _logo);
+                        _result.phone += <logo>{ _logo }</logo>
+                    }
+                    /*
+                    else {
+                        //Versão Antiga (Obtém a Logo do Próprio Site)
+                        //var _logo = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/center/div/img/@src').toString().trim();
+                        //y.log('Logo: ' + _logo);
+                        //_result.phone += <logo>{ _logo }</logo>
+                    }
+                    */
 
                     var number = y.xpath(_data, '//div[@id="resultado_num"] /div[@class="row"]/div[@class="col-md-8"]/span[6]/text()').toString().trim();
                     if(number.length == 10) {
