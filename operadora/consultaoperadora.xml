@@ -13,8 +13,8 @@
             </urls>
             <inputs>
                 <key id="tel" type="xs:string" required="true" paramType="variable"/>
-                <key id="logo" type="xs:boolean" required="false" paramType="variable" default="false"/>
-                <key id="mono" type="xs:boolean" required="false" paramType="variable" default="false"/>
+                <key id="logo" type="xs:string" required="false" paramType="variable" default="false"/>
+                <key id="mono" type="xs:string" required="false" paramType="variable" default="false"/>
             </inputs>
             <execute>
                 <![CDATA[
@@ -59,12 +59,12 @@
                     y.log('Type: ' + type);
                     _result.phone += <type>{ type }</type>
 
-                    if(logo == true) {
-                        if(mono == false) {
+                    if(logo == 'true') {
+                        if(mono == 'false') {
                             y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/show_carrier_logo/color/show_carrier_logo.min.js");
                             var _logo = show_carrier_logo('COLOR',carrier_name.toUpperCase());
                         }
-                        if(mono == true) {
+                        if(mono == 'true') {
                             y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/show_carrier_logo/mono/show_carrier_logo.min.js");
                             var _logo = show_carrier_logo('MONO',carrier_name.toUpperCase());
                         }
