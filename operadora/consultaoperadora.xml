@@ -40,12 +40,12 @@
                     var carrier_name = '';
                     //y.log('Raw Carrier: ' + carrier);
 
-                    if(/Telefônica Brasil/.test(carrier)) {
-                        carrier_name = "Vivo";
-                    }
-                    else {
-                        carrier_name = carrier.split(' ')[0];
-                    }
+                    //Vivo
+                    carrier_name = (/Telefônica Brasil/.test(carrier)) ? "Vivo" : carrier.split(' ')[0];
+
+                    //Oi
+                    if(/OI/.test(carrier)) carrier_name = "Oi";
+
                     y.log('Carrier: ' + carrier_name);
                     _result.phone += <carrier>{ carrier_name }</carrier>
 
