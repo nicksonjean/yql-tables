@@ -43,11 +43,11 @@
 
                         var carrier = y.xpath(_data, '//div[@class="a"]/img/@title').toString().trim();
                         y.log('Carrier: ' + carrier);
-                            _result.phone += <carrier>{ carrier }</carrier>
+                        _result.phone += <carrier>{ carrier }</carrier>
 
                         var type = y.xpath(_data, '//div[@class="b"]/p[1]/text()').toString();
                         y.log('Type ' + type);
-                            _result.phone += <type>{ type }</type>
+                        _result.phone += <type>{ type }</type>
 
                         if(logo == 'true') {
                             if(mono == 'false') {
@@ -72,11 +72,11 @@
 
                         var number = y.xpath(_data, '//div[@class="a"]/div[@class="tel"]/text()').toString();
                         y.log('Number: ' + number);
-                            _result.phone += <number>{ number }</number>
+                        _result.phone += <number>{ number }</number>
 
                         var ported = y.xpath(_data, '//div[@class="b"]/p[2]/text()').toString().toUpperCase();
                         y.log('Ported: ' + ported);
-                            _result.phone += <ported>{ ported }</ported>
+                        _result.phone += <ported>{ ported }</ported>
 
                         response.object = _result;
                     }
