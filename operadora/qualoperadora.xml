@@ -33,7 +33,7 @@
                                 .post('tel='+tel)
                                 .response;
 
-                    var _root = y.xpath(_data,'//div[@class="resultado"]/b');
+                    var _root = y.xpath(_data,'//*[@id="ctd"]/b');
                     if(_root.length() > 0) {
                         y.log('Limit: ' + _root.toString());
                         response.object = <limit>{ _root.toString() }</limit>;
@@ -41,11 +41,11 @@
                     else {
                         var _result = <phone />
 
-                        var carrier = y.xpath(_data, '//div[@class="resultado"]/div[@class="img"]/img/@title').toString().trim();
+                        var carrier = y.xpath(_data, '//*[@id="ctd"]/div[2]/div/img/@title').toString().trim();
                         y.log('Carrier: ' + carrier);
                             _result.phone += <carrier>{ carrier }</carrier>
 
-                        var type = y.xpath(_data, '//div[@class="resultado"]/div[@class="img"]/div/text()').toString();
+                        var type = y.xpath(_data, '//*[@id="ctd"]/div[2]/div/div/text()').toString();
                         y.log('Type ' + type);
                             _result.phone += <type>{ type }</type>
 
@@ -64,17 +64,17 @@
                         /*
                         else {
                             //Versão Antiga (Obtém a Logo do Próprio Site)
-                            //var logo = y.xpath(_data, '//div[@class="resultado"]/div[@class="img"]/img/@src').toString();
+                            //var logo = y.xpath(_data, '//*[@id="ctd"]/div[2]/div/img/@src').toString();
                             //y.log('Logo: ' + logo);
                             //_result.phone += <logo>{ logo }</logo>
                         }
                         */
 
-                        var number = y.xpath(_data, '//div[@class="resultado"]/h1/text()').toString();
+                        var number = y.xpath(_data, '//*[@id="ctd"]/div[2]/h1/text()').toString();
                         y.log('Number: ' + number);
                             _result.phone += <number>{ number }</number>
 
-                        var ported = y.xpath(_data, '//[@class="resultado"]/p[1]/text()').toString().toUpperCase();
+                        var ported = y.xpath(_data, '//*[@id="ctd"]/div[2]/p[1]/text()').toString().toUpperCase();
                         y.log('Ported: ' + ported);
                             _result.phone += <ported>{ ported }</ported>
 
