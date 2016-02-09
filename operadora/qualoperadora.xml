@@ -25,15 +25,10 @@
                     var _data = null;
                     y.log('Browser: ' + _ua.toString().replace(/,/g, ""));
                     _data = _request
-                                .accept('text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8')
-                                .header('Accept-Encoding', 'gzip,deflate')
-                                .header('Accept-Language', 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4')
+                                .accept('text/html')
                                 .contentType("application/x-www-form-urlencoded")
+                                .header('Accept-Encoding', 'gzip,deflate')
                                 .decompress(true)
-                                .header('Host', 'qualoperadora.info')
-                                .header('Origin', _url+'/')
-                                .header('Referer', _url+'/')
-                                .header('Upgrade-Insecure-Requests', '1')
                                 .header('User-Agent', _ua)
                                 .post('tel='+tel)
                                 .response;
