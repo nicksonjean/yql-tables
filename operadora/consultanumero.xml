@@ -46,7 +46,7 @@
                         _result.phone += <carrier>{ carrier }</carrier>
 
                         var type = y.xpath(_data, '//div[@class="b"]/p[1]/text()').toString();
-                        y.log('Type ' + type);
+                        y.log('Type: ' + type);
                         _result.phone += <type>{ type }</type>
 
                         if(logo == 'true') {

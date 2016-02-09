@@ -54,7 +54,7 @@
                         _result.phone += <carrier>{ carrier_name }</carrier>
 
                         var type = carrier.substring(2, carrier.length).split(' - ')[1].trim();
-                        y.log('Type ' + type);
+                        y.log('Type: ' + type);
                         _result.phone += <type>{ type }</type>
 
                         if(logo == 'true') {
