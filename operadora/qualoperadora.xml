@@ -60,11 +60,11 @@
                         if(logo == 'true') {
                             if(mono == 'false') {
                                 y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/show_carrier_logo/color/show_carrier_logo.min.js");
-                                var _logo = show_carrier_logo('COLOR',carrier.toUpperCase());
+                                var _logo = show_carrier_logo('COLOR',carrier.split(' - ')[0].toUpperCase());
                             }
                             if(mono == 'true') {
                                 y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/show_carrier_logo/mono/show_carrier_logo.min.js");
-                                var _logo = show_carrier_logo('MONO',carrier.toUpperCase());
+                                var _logo = show_carrier_logo('MONO',carrier.split(' - ')[0].toUpperCase());
                             }
                             y.log('Logo: ' + _logo);
                             _result.phone += <logo>{ _logo }</logo>
