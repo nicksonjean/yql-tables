@@ -20,8 +20,8 @@
                 <![CDATA[
                     y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/random_useragent/random_useragent.min.js");
                     var _ua = random_useragent();
-                    var _url = 'http://qualoperadora.info';
-                    var _request = y.rest(_url + '/consulta');
+                    var _url = 'http://www.qualoperadora.net';
+                    var _request = y.rest(_url + '/');
                     var _data = null;
                     y.log('Browser: ' + _ua.toString().replace(/,/g, ""));
                     _data = _request
@@ -30,56 +30,10 @@
                                 .header('Accept-Encoding', 'gzip,deflate')
                                 .decompress(true)
                                 .header('User-Agent', _ua)
-                                .post('tel='+tel)
+                                .post('telefone='+tel)
                                 .response;
 
-                    var _root = y.xpath(_data,'//div[@class="resultado"]/b');
-                    if(_root.length() > 0) {
-                        y.log('Limit: ' + _root.toString());
-                        response.object = <limit>{ _root.toString() }</limit>;
-                    }
-                    else {
-                        var _result = <phone />
-
-                        var carrier = y.xpath(_data, '//div[@class="resultado"]/div[@class="img"]/img/@title').toString().trim();
-                        y.log('Carrier: ' + carrier);
-                            _result.phone += <carrier>{ carrier }</carrier>
-
-                        var type = y.xpath(_data, '//div[@class="resultado"]/div[@class="img"]/div/text()').toString();
-                        y.log('Type ' + type);
-                            _result.phone += <type>{ type }</type>
-
-                        if(logo == 'true') {
-                            if(mono == 'false') {
-                                y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/show_carrier_logo/color/show_carrier_logo.min.js");
-                                var _logo = show_carrier_logo('COLOR',carrier.toUpperCase());
-                            }
-                            if(mono == 'true') {
-                                y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/show_carrier_logo/mono/show_carrier_logo.min.js");
-                                var _logo = show_carrier_logo('MONO',carrier.toUpperCase());
-                            }
-                            y.log('Logo: ' + _logo);
-                            _result.phone += <logo>{ _logo }</logo>
-                        }
-                        /*
-                        else {
-                            //Versão Antiga (Obtém a Logo do Próprio Site)
-                            //var logo = y.xpath(_data, '//div[@class="resultado"]/div[@class="img"]/img/@src').toString();
-                            //y.log('Logo: ' + logo);
-                            //_result.phone += <logo>{ logo }</logo>
-                        }
-                        */
-
-                        var number = y.xpath(_data, '//div[@class="resultado"]/h1/text()').toString();
-                        y.log('Number: ' + number);
-                            _result.phone += <number>{ number }</number>
-
-                        var ported = y.xpath(_data, '//div[@class="resultado"]/p[1]/text()').toString().toUpperCase();
-                        y.log('Ported: ' + ported);
-                            _result.phone += <ported>{ ported }</ported>
-
-                        response.object = _result;
-                    }
+                    response.object = <getresult>{_data}</getresult>;
                 ]]>
             </execute>
         </select>
