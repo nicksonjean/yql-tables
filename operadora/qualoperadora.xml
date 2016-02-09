@@ -41,30 +41,30 @@
                     else {
                         var _result = <phone />
 
-                        var carrier = y.xpath(_data, '//*[@id="consulta_num"]/table/tbody/tr[1]/td[1]/h2/span[2]/text()').toString().trim();
-                        var carrier_name = '';
-                        //y.log('Raw Carrier: ' + carrier.split(' - ')[0]);
+                        var carrier = y.xpath(_data, '//form[@id="consulta_num"]/table/tbody/tr[1]/td[1]/h2/span[2]/text()').toString().trim();
+                        var carrier_name = carrier.substring(2, carrier.length).split(' - ')[0].trim();
+                        //y.log('Raw Carrier: ' + carrier_name);
                         //Vivo
-                        carrier_name = (/Telefônica Brasil/.test(carrier.split(' - ')[0])) ? "Vivo" : carrier.split(' - ')[0].split(' ')[0];
+                        carrier_name = (/Telefônica Brasil/.test(carrier_name)) ? "Vivo" : carrier_name.split(' ')[0];
 
                         //Oi
-                        if(/OI/.test(carrier.split(' - ')[0])) carrier_name = "Oi";
+                        if(/OI/.test(carrier_name)) carrier_name = "Oi";
 
                         y.log('Carrier: ' + carrier_name);
                         _result.phone += <carrier>{ carrier_name }</carrier>
 
-                        var type = carrier.split(' - ')[1];
+                        var type = carrier.substring(2, carrier.length).split(' - ')[1].trim();
                         y.log('Type ' + type);
                         _result.phone += <type>{ type }</type>
 
                         if(logo == 'true') {
                             if(mono == 'false') {
                                 y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/show_carrier_logo/color/show_carrier_logo.min.js");
-                                var _logo = show_carrier_logo('COLOR',carrier.split(' - ')[0].toUpperCase());
+                                var _logo = show_carrier_logo('COLOR',carrier_name.toUpperCase());
                             }
                             if(mono == 'true') {
                                 y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/show_carrier_logo/mono/show_carrier_logo.min.js");
-                                var _logo = show_carrier_logo('MONO',carrier.split(' - ')[0].toUpperCase());
+                                var _logo = show_carrier_logo('MONO',carrier_name.toUpperCase());
                             }
                             y.log('Logo: ' + _logo);
                             _result.phone += <logo>{ _logo }</logo>
@@ -72,13 +72,13 @@
                         /*
                         else {
                             //Versão Antiga (Obtém a Logo do Próprio Site)
-                            //var logo = y.xpath(_data, '//*[@id="consulta_num"]/table/tbody/tr[1]/td[2]/img/@src').toString();
+                            //var logo = y.xpath(_data, '//form[@id="consulta_num"]/table/tbody/tr[1]/td[2]/img/@src').toString();
                             //y.log('Logo: ' + logo);
                             //_result.phone += <logo>{ logo }</logo>
                         }
                         */
 
-                        var number = y.xpath(_data, '//*[@id="numero"]/@value').toString();
+                        var number = y.xpath(_data, '//input[@id="numero"][@type="tel"]/@value').toString();
                         if(number.length == 10) {
                             number = '(' + number.substring(0, 2) + ')' + ' ' + number.substring(2, 6) + '-' + number.substring(6, 10);
                         }
@@ -88,9 +88,9 @@
                         y.log('Number: ' + number);
                         _result.phone += <number>{ number }</number>
 
-                        var ported = y.xpath(_data, '//*[@id="consulta_num"]/table/tbody/tr[2]/td/h2/span[2]/text()').toString().split(': ')[1].toUpperCase();
-                        y.log('Ported: ' + ported);
-                        _result.phone += <ported>{ ported }</ported>
+                        var ported = y.xpath(_data, '//form[@id="consulta_num"]/table/tbody/tr[2]/td/h2/span[2]/text()').toString().trim().toUpperCase();
+                        y.log('Ported: ' + ported.substring(2, ported.length).trim());
+                        _result.phone += <ported>{ ported.substring(2, ported.length).trim() }</ported>
 
                         response.object = _result;
                     }
