@@ -44,8 +44,6 @@
                         var carrier = y.xpath(_data, '//form[@id="consulta_num"]/table/tbody/tr[1]/td[1]/h2/span[2]/text()').toString().trim();
                         var carrier_name = carrier.substring(2, carrier.length).split(' - ')[0].trim();
                         //y.log('Raw Carrier: ' + carrier_name);
-                        //Vivo
-                        carrier_name = (/Telefônica Brasil/.test(carrier_name)) ? "Vivo" : carrier_name.split(' ')[0];
 
                         //Oi
                         if(/OI/.test(carrier_name)) carrier_name = "Oi";
@@ -89,8 +87,9 @@
                         _result.phone += <number>{ number }</number>
 
                         var ported = y.xpath(_data, '//form[@id="consulta_num"]/table/tbody/tr[2]/td/h2/span[2]/text()').toString().trim().toUpperCase();
-                        y.log('Ported: ' + ported.substring(2, ported.length).trim());
-                        _result.phone += <ported>{ ported.substring(2, ported.length).trim() }</ported>
+                        var ported_name = ported.substring(2, ported.length).trim();
+                        y.log('Ported: ' + (/NÄO/.test(ported_name)) ? "NÃO" : ported_name);
+                        _result.phone += <ported>{ (/NÄO/.test(ported_name)) ? "NÃO" : ported_name }</ported>
 
                         response.object = _result;
                     }
