@@ -88,7 +88,7 @@
 
                         var ported = y.xpath(_data, '//form[@id="consulta_num"]/table/tbody/tr[2]/td/h2/span[2]/text()').toString().trim().toUpperCase();
                         var ported_name = ported.substring(2, ported.length).trim();
-                        y.log('Ported: ' + (/NÄO/.test(ported_name)) ? "NÃO" : ported_name);
+                        y.log('Ported: ' + ((/NÄO/.test(ported_name)) ? "NÃO" : ported_name));
                         _result.phone += <ported>{ (/NÄO/.test(ported_name)) ? "NÃO" : ported_name }</ported>
 
                         response.object = _result;
