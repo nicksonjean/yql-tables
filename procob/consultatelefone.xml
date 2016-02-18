@@ -26,6 +26,7 @@
                     _data = _request
                                 .accept('text/html')
                                 .header('User-Agent', _ua)
+                                .get()
                                 .response;
 
                     var _result = <data />
