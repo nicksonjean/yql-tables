@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+    <meta>
+        <author>Nickson Jeanmerson</author>
+        <description>Verifica os Dados de Endereçamento do Titular do Número Telefônico</description>
+        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE ddd="foo" AND telefone="bar"]]></sampleQuery>
+        <documentationURL></documentationURL>
+    </meta>
+    <bindings>
+        <select itemPath="" produces="XML">
+            <urls>
+                <url>{url}</url>
+            </urls>
+            <inputs>
+                <key id="ddd" type="xs:string" required="true" paramType="variable"/>
+                <key id="telefone" type="xs:string" required="true" paramType="variable"/>
+            </inputs>
+            <execute>
+                <![CDATA[
+                    y.include("https://raw.githubusercontent.com/nicksonjean/yql-tables/master/utils/scripts/random_useragent/random_useragent.min.js");
+                    var _ua = random_useragent();
+                    var _url = 'http://procob.d2g.com/webservice/consultanova.php?usuario=alexandre@zenitech.com.br&senha=9763291&tipocons=127&ddd=' + ddd + '&telefone=' + telefone + '&session=';
+                    var _request = y.rest(_url);
+                    var _data = null;
+                    y.log('Browser: ' + _ua.toString().replace(/,/g, ""));
+                    _data = _request
+                                .accept('text/html')
+                                .header('User-Agent', _ua)
+                                .response;
+
+                    var _result = <data />
+
+                    var ddd = y.xpath(_data, '//table/tbody/tr[2]/td[1]/font/text()').toString().trim();
+                    y.log('DDD: ' + ddd);
+                    _result.data += <ddd>{ ddd }</ddd>
+
+                    var phone = y.xpath(_data, '//table/tbody/tr[2]/td[2]/font/text()').toString().trim();
+                    y.log('Phone: ' + phone);
+                    _result.data += <phone>{ phone }</phone>
+
+                    var document = y.xpath(_data, '//table/tbody/tr[2]/td[3]/font/text()').toString().trim();
+                    y.log('Document: ' + document);
+                    _result.data += <document>{ document }</document>
+
+                    var owner = y.xpath(_data, '//table/tbody/tr[2]/td[4]/font/text()').toString().trim();
+                    y.log('Owner: ' + owner);
+                    _result.data += <owner>{ owner }</owner>
+
+                    var place = y.xpath(_data, '//table/tbody/tr[2]/td[5]/font/text()').toString().trim();
+                    y.log('Place: ' + place);
+                    _result.data += <place>{ place }</place>
+
+                    var address = y.xpath(_data, '//table/tbody/tr[2]/td[6]/font/text()').toString().trim();
+                    y.log('Address: ' + address);
+                    _result.data += <address>{ address }</address>
+
+                    var number = y.xpath(_data, '//table/tbody/tr[2]/td[7]/font/text()').toString().trim();
+                    y.log('Number: ' + number);
+                    _result.data += <number>{ number }</number>
+
+                    var complement = y.xpath(_data, '//table/tbody/tr[2]/td[8]/font/text()').toString().trim();
+                    y.log('Complement: ' + complement);
+                    _result.data += <complement>{ complement }</complement>
+
+                    var zip = y.xpath(_data, '//table/tbody/tr[2]/td[9]/font/text()').toString().trim();
+                    y.log('Zip: ' + zip);
+                    _result.data += <zip>{ zip }</zip>
+
+                    var city = y.xpath(_data, '//table/tbody/tr[2]/td[10]/font/text()').toString().trim();
+                    y.log('City: ' + city);
+                    _result.data += <city>{ city }</city>
+
+                    var state = y.xpath(_data, '//table/tbody/tr[2]/td[11]/font/text()').toString().trim();
+                    y.log('State: ' + state);
+                    _result.data += <state>{ state }</state>
+
+                    response.object = _result;
+                ]]>
+            </execute>
+        </select>
+    </bindings>
+</table>
