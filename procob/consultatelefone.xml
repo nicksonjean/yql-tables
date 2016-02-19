@@ -65,7 +65,7 @@
 
                     var burgh = y.xpath(_data, '//table/tbody/tr[2]/td[9]/font/text()').toString().trim();
                     y.log('Burgh: ' + burgh);
-                    _result.data += <zip>{ burgh }</zip>
+                    _result.data += <burgh>{ burgh }</burgh>
 
                     var zip = y.xpath(_data, '//table/tbody/tr[2]/td[10]/font/text()').toString().trim();
                     y.log('Zip: ' + zip);
