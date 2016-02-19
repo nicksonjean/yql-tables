@@ -63,15 +63,19 @@
                     y.log('Complement: ' + complement);
                     _result.data += <complement>{ complement }</complement>
 
-                    var zip = y.xpath(_data, '//table/tbody/tr[2]/td[9]/font/text()').toString().trim();
+                    var burgh = y.xpath(_data, '//table/tbody/tr[2]/td[9]/font/text()').toString().trim();
+                    y.log('Burgh: ' + burgh);
+                    _result.data += <zip>{ burgh }</zip>
+
+                    var zip = y.xpath(_data, '//table/tbody/tr[2]/td[10]/font/text()').toString().trim();
                     y.log('Zip: ' + zip);
                     _result.data += <zip>{ zip }</zip>
 
-                    var city = y.xpath(_data, '//table/tbody/tr[2]/td[10]/font/text()').toString().trim();
+                    var city = y.xpath(_data, '//table/tbody/tr[2]/td[11]/font/text()').toString().trim();
                     y.log('City: ' + city);
                     _result.data += <city>{ city }</city>
 
-                    var state = y.xpath(_data, '//table/tbody/tr[2]/td[11]/font/text()').toString().trim();
+                    var state = y.xpath(_data, '//table/tbody/tr[2]/td[12]/font/text()').toString().trim();
                     y.log('State: ' + state);
                     _result.data += <state>{ state }</state>
 
