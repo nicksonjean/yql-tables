@@ -3,7 +3,7 @@
     <meta>
         <author>Christian Heilmann</author>
         <description>HTML pages that need post data</description>
-        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE url='url' AND postdata="foo=foo&bar=bar" AND xpath="//p"]]</sampleQuery>
+        <sampleQuery><![CDATA[SELECT * FROM {table} WHERE url='url' AND postdata="foo=foo&bar=bar" AND xpath="//p"]]></sampleQuery>
         <documentationURL></documentationURL>
     </meta>
     <bindings>
