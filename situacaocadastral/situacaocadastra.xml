@@ -17,7 +17,7 @@
             </inputs>
             <execute>
                 <![CDATA[
-                    var _request = y.rest('http://www.situacaocadastral.com.br/');
+                    var _request = y.rest('https://www.situacaocadastral.com.br/');
                     var _data = null;
                     _data = _request
                                 .accept('text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8')
